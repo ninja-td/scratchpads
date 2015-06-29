@@ -1,0 +1,59 @@
+<html>
+<head>
+<style>
+.separator {
+  border-right: 1px solid;
+  width: 0px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.button {
+  background-color: #339966;
+  border: 0 none;
+  border-radius: 2px 2px 2px 2px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial,sans-serif;
+  font-size: 12px;
+  padding: 7px 10px;
+  transition: background-color .5s;
+}
+.button:hover {
+  background-color: #5CAD85;
+}
+</style>
+<script>
+var clearText = function() {
+	document.getElementById('notepad').value = '';
+}
+var upperCase = function() {
+  document.getElementById('notepad').value =
+    document.getElementById('notepad').value.toUpperCase();
+}
+
+var lowerCase = function() {
+  document.getElementById('notepad').value =
+    document.getElementById('notepad').value.toLowerCase();
+}
+var splitText = function() {
+  var splitChar = document.getElementById('notepad-split-char').value || ' ';
+  var splitStr = document.getElementById('notepad').value.split(splitChar);
+  document.getElementById('notepad').value = splitStr.join('\n');
+}
+</script>
+</head>
+<body style="text-align:center;">
+<div style='padding:10px 0;'>
+<select id=diff-type>
+  <option value=line>Line</option>
+  <option value=word>Word</option>
+</select>
+<input type=button class=button value=Diff />
+</div>
+<div>
+<textarea id=diff-a style='width:45%;height:50%;boder:1px solid blue;' placeholder='text A'></textarea>
+<textarea id=diff-b style='width:45%;height:50%;boder:1px solid blue;' placeholder='text B'></textarea>
+</body>
+</html>
