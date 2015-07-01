@@ -23,24 +23,47 @@
 .button:hover {
   background-color: #5CAD85;
 }
+.different {
+  color: red;
+}
+.same {
+  color: green;
+}
+.result-box {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid blue;
+}
 </style>
 <script>
-var clearText = function() {
-	document.getElementById('notepad').value = '';
-}
-var upperCase = function() {
-  document.getElementById('notepad').value =
-    document.getElementById('notepad').value.toUpperCase();
-}
+var diffIt = function() {
+  var text1 = document.getElementById('diff-a').value;
+  var text2 = document.getElementById('diff-b').value;
+  var mode = document.getElementById('diff-type').value;
+  var splitChar = '\n';
+  var joinTag = '<br>'; 
+  if (mode == 'word') {
+    splitChar = ' ';
+    joinTag = ' '; 
+  }
+  var tokens1 = text1.split(splitChar);
+  var tokens2 = text2.split(splitChar);
+  var diffHtml = '';
+  var i;
+  for (i=0; i<tokens1.length; i++) {
+    if (i > tokens2.length || tokens1[i] != tokens2[i]) {
+      diffHtml += joinTag + '<span class=different>' + tokens1[i] + '</span>';
+    } else {
+      diffHtml += joinTag + '<span class=same>' + tokens1[i] + '</span>';
+    }
+  }
+  if (i < tokens2.length) {
+    for (; i<tokens2.length; i++) {
+      diffHtml += joinTag + '<span class=different>' + tokens2[i] + '</span>';
+    }
+  }
 
-var lowerCase = function() {
-  document.getElementById('notepad').value =
-    document.getElementById('notepad').value.toLowerCase();
-}
-var splitText = function() {
-  var splitChar = document.getElementById('notepad-split-char').value || ' ';
-  var splitStr = document.getElementById('notepad').value.split(splitChar);
-  document.getElementById('notepad').value = splitStr.join('\n');
+  document.getElementById('diff-result').innerHTML = diffHtml;
 }
 </script>
 </head>
@@ -50,10 +73,14 @@ var splitText = function() {
   <option value=line>Line</option>
   <option value=word>Word</option>
 </select>
-<input type=button class=button value=Diff />
+<input type=button class=button value=Diff onclick='diffIt()'/>
 </div>
 <div>
 <textarea id=diff-a style='width:45%;height:50%;boder:1px solid blue;' placeholder='text A'></textarea>
 <textarea id=diff-b style='width:45%;height:50%;boder:1px solid blue;' placeholder='text B'></textarea>
+<div style='text-align: left;'>
+Result:
+<div id=diff-result class=result-box></div>
+</div>
 </body>
 </html>
