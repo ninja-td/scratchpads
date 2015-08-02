@@ -1,41 +1,21 @@
 <html>
 <head>
-<style>
-.separator {
-  border-right: 1px solid;
-  width: 0px;
-  margin-left:10px;
-  margin-right:10px;
-}
-
-.button {
-  background-color: #339966;
-  border: 0 none;
-  border-radius: 2px 2px 2px 2px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Arial,sans-serif;
-  font-size: 12px;
-  padding: 7px 10px;
-  transition: background-color .5s;
-}
-.button:hover {
-  background-color: #5CAD85;
-}
-.different {
-  color: red;
-}
-.same {
-  color: green;
-}
-.result-box {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid blue;
-}
-</style>
+<link rel=stylesheet type=text/css href=scp.css>
 <script>
+var escapeHTML = function(unsafe) {
+  return unsafe.replace(/[&<"']/g, function(m) {
+    switch (m) {
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '"':
+        return '&quot;';
+      default:
+        return '&#039;';
+    }
+  });
+};
 var diffIt = function() {
   var text1 = document.getElementById('diff-a').value;
   var text2 = document.getElementById('diff-b').value;
@@ -52,14 +32,14 @@ var diffIt = function() {
   var i;
   for (i=0; i<tokens1.length; i++) {
     if (i > tokens2.length || tokens1[i] != tokens2[i]) {
-      diffHtml += joinTag + '<span class=different>' + tokens1[i] + '</span>';
+      diffHtml += joinTag + '<span class=different>' + escapeHTML(tokens1[i]) + '</span>';
     } else {
-      diffHtml += joinTag + '<span class=same>' + tokens1[i] + '</span>';
+      diffHtml += joinTag + '<span class=same>' + escapeHTML(tokens1[i]) + '</span>';
     }
   }
   if (i < tokens2.length) {
     for (; i<tokens2.length; i++) {
-      diffHtml += joinTag + '<span class=different>' + tokens2[i] + '</span>';
+      diffHtml += joinTag + '<span class=different>' + escapeHTML(tokens2[i]) + '</span>';
     }
   }
 
@@ -67,7 +47,11 @@ var diffIt = function() {
 }
 </script>
 </head>
-<body style="text-align:center;">
+<body>
+<div class=main-menu>
+  <a href=notepad.html>notepad</a>
+  <a href=diff.html>diff</a>
+</div>
 <div style='padding:10px 0;'>
 <select id=diff-type>
   <option value=line>Line</option>
@@ -78,7 +62,7 @@ var diffIt = function() {
 <div>
 <textarea id=diff-a style='width:45%;height:50%;boder:1px solid blue;' placeholder='text A'></textarea>
 <textarea id=diff-b style='width:45%;height:50%;boder:1px solid blue;' placeholder='text B'></textarea>
-<div style='text-align: left;'>
+<div>
 Result:
 <div id=diff-result class=result-box></div>
 </div>

@@ -1,0 +1,43 @@
+.separator {
+  border-right: 1px solid;
+  width: 0px;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+.button {
+  background-color: #339966;
+  border: 0 none;
+  border-radius: 2px 2px 2px 2px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial,sans-serif;
+  font-size: 12px;
+  padding: 7px 10px;
+  transition: background-color .5s;
+}
+.button:hover {
+  background-color: #5CAD85;
+}
+.different {
+  color: red;
+}
+.same {
+  color: green;
+}
+.result-box {
+  width: 90%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid blue;
+}
+.main-menu {
+  padding: 10px;
+  width: 90%;
+  text-align: right;
+  color: #339966;
+}
+.main-menu a {
+  color: #339966;
+}

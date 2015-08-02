@@ -1,29 +1,6 @@
 <html>
 <head>
-<style>
-.separator {
-  border-right: 1px solid;
-  width: 0px;
-  margin-left:10px;
-  margin-right:10px;
-}
-
-.button {
-  background-color: #339966;
-  border: 0 none;
-  border-radius: 2px 2px 2px 2px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Arial,sans-serif;
-  font-size: 12px;
-  padding: 7px 10px;
-  transition: background-color .5s;
-}
-.button:hover {
-  background-color: #5CAD85;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="scp.css">
 <script>
 var clearText = function() {
 	document.getElementById('notepad').value = '';
@@ -45,6 +22,10 @@ var splitText = function() {
 </script>
 </head>
 <body>
+<div class=main-menu>
+  <a href=notepad.html>notepad</a>
+  <a href=diff.html>diff</a>
+</div>
 <div style='padding:10px 0;'>
 <input type=button class=button value=clear onclick='clearText()' />
 <span class=separator></span>
@@ -54,6 +35,6 @@ var splitText = function() {
 <input type=text id=notepad-split-char placeholder='split by' style='width:50px;' />
 <input type=button class=button value=split onclick='splitText()' />
 </div>
-<textarea id=notepad style='width:100%;height:100%;boder:1px solid blue;' placeholder='type here'></textarea>
+<textarea id=notepad style='width:95%;height:100%;boder:1px solid blue;' placeholder='type here'></textarea>
 </body>
 </html>
